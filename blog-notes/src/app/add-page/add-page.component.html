@@ -1,9 +1,31 @@
 <div class="w3-card-4 w3-margin w3-white">
     <div class="w3-container">
-      <h3 id="title-header"><b>title header</b></h3>
-      <h5 id="title">title <span id="date" class="w3-opacity">20 Jan 2021</span></h5>
-      <!-- <h5 id="date" class="w3-opacity">20 Jan 2021</h5> -->
+        <div >
+            <form #myForm="ngForm" (ngSubmit)="onSubmitTemplateBased()">
+                <p>
+                    <button class="w3-button" (click)="editTitleHeader(titleHeader)"><i class="far fa-edit"></i></button>
+                    <input type="text"  id="title-header"
+                        [(ngModel)]="titleHeader" name="blogTitle" required>
+                </p>
+           
+                <p>
+                    
+                </p>
+            </form>
+            <!-- <span><button class="w3-button" (click)="editTitleHeader(titleHeader)"><i class="far fa-edit"></i></button>
+                <input class="w3-input w3-border" type="text" [(ngModel)]="titleHeader" /></span>  -->
+                <!-- <h3 id="title-header"><b>{{titleHeader}}</b></h3></span>    -->
+                <!--class="w3-input w3-border"-->
+        </div>
+        <div >
+            <span><i class="far fa-edit"></i>
+                <h5 id="title">{{title}}
+                <span id="date" class="w3-opacity">{{nowDate}}</span>
+            </h5></span>   
+        </div>
     </div>
+<!-- add -->
+
 </div>   
 <br>
-<span><i class="fas fa-thumbs-up fa-5x"></i></span>
+

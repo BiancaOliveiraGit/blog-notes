@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { AddPageComponent } from './add-page/add-page.component';
+import { FormsModule } from '@angular/forms';
+// import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { AddPageComponent } from './add-page/add-page.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    // NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
