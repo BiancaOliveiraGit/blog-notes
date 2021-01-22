@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { AddPageComponent } from './add-page/add-page.component';
 import { FormsModule } from '@angular/forms';
+import { AddFormComponent } from './add-form/add-form.component';
 // import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    AddPageComponent
+    AddPageComponent,
+    AddFormComponent
   ],
   imports: [
     BrowserModule,

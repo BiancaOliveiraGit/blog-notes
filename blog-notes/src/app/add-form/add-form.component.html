@@ -1,0 +1,48 @@
+
+
+<div class="w3-container">
+    <!-- <h3 id="heading">To open an Angular Modal</h3>
+    <p>example from ModelMaintenance <strong style="color:blue;">'../maintenance-options-modal'</strong></p>
+   
+    <ul style="list-style-type: square;">learnings: 
+        <li>can set the size 'sm' 'lg'</li>
+        <li>to inject data into modal @input parameters <b>copyModal.componentInstance.selectedCategory = data;</b></li>
+      </ul>
+
+    <p>code example:</p>
+    <pre>
+        <code> -->
+            <!-- todo escape function -->
+          <!-- "openCopyModal(data) {{ fhhf 
+            ffd&gt;"
+        </code>
+      </pre>    -->
+<!-- WIP - below-->
+<div class="w3-container">
+    <form #addForm="ngForm">
+        <span class="w3-button w3-display-topright w3-red" (click)="closeForm(false)">X</span>
+        <p>
+            <input type="text"  id="heading" [(ngModel)]="addHeading" name="addTitle" required>
+        </p>
+        <p>
+            <textarea id="note" class="w3-input w3-border" style="resize:none" 
+            [(ngModel)]="addNote" name="addTextarea" required rows="5" cols="50"></textarea>
+        </p>   
+        <p>
+            <textarea id="list" class="w3-input w3-border" style="resize:none" 
+            [(ngModel)]="addList" name="addListText" rows="3" cols="50"></textarea>
+        </p>  
+        <p>
+            <textarea id="code" class="w3-input w3-border" style="resize:none" 
+            [(ngModel)]="addCode" name="addCodeNote" required rows="8" cols="50"></textarea>
+        </p> 
+        <p><button class="w3-btn w3-green" id="ok" (click)="closeForm(true)"><i class="fas fa-check"></i></button></p>
+    
+        
+        <!-- TODO upload image-->
+     
+    </form>
+</div>
+
+    
+</div> 

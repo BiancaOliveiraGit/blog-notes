@@ -1,27 +1,31 @@
 <div class="w3-card-4 w3-margin w3-white">
     <div class="w3-container">
-        <div >
-            <form #myForm="ngForm" (ngSubmit)="onSubmitTemplateBased()">
-                <p>
-                    <button class="w3-button" (click)="editTitleHeader(titleHeader)"><i class="far fa-edit"></i></button>
-                    <input type="text"  id="title-header"
-                        [(ngModel)]="titleHeader" name="blogTitle" required>
-                </p>
-           
-                <p>
-                    
-                </p>
-            </form>
-            <!-- <span><button class="w3-button" (click)="editTitleHeader(titleHeader)"><i class="far fa-edit"></i></button>
-                <input class="w3-input w3-border" type="text" [(ngModel)]="titleHeader" /></span>  -->
-                <!-- <h3 id="title-header"><b>{{titleHeader}}</b></h3></span>    -->
-                <!--class="w3-input w3-border"-->
-        </div>
-        <div >
-            <span><i class="far fa-edit"></i>
-                <h5 id="title">{{title}}
+        <div>
+            <form #titleForm="ngForm" >
+             <p>
+             <button class="w3-button" (click)="allowEdit('title-header')"><i class="far fa-edit"></i></button>
+             <input type="text"  id="title-header" disabled="true"
+             [(ngModel)]="titleHeader" name="blogTitle" required>
+            </p>
+            <p>
+            <button class="w3-button" (click)="allowEdit('title')"><i class="far fa-edit"></i></button>
+            <input type="text"  id="title" disabled="true"
+                [(ngModel)]="title" name="blogTitleSub" required>
                 <span id="date" class="w3-opacity">{{nowDate}}</span>
-            </h5></span>   
+            </p>
+            </form>
+        </div>
+        <!-- plus button-->
+        <br>
+        <button class="w3-button w3-xxxlarge" (click)="openModalAddForm('addmodal')"><i class="far fa-plus-square"></i></button>
+
+        <!-- add modal -->
+        <div id="addmodal" class="w3-modal">
+            <div class="w3-modal-content">
+            <div class="w3-container" id="add-modal" > <!--(click)="hideAddModal(addmodal)"-->
+                <app-add-form></app-add-form> 
+            </div>
+            </div>
         </div>
     </div>
 <!-- add -->

@@ -16,19 +16,23 @@ export class AddPageComponent implements OnInit {
     this.title = 'Title';
     let now = new Date();
     this.nowDate = now.toDateString();
-    
   }
 
   ngOnInit(): void {
   }
 
-  editTitleHeader(e: any) {
-    console.log(e);
-    // get elementid
-    // change to editable text
+  allowEdit(id: any) {
+   // change to editable text
+   let textInput = (document.getElementById(id) as HTMLFormElement);
+   textInput.disabled = !textInput.disabled;
   }
 
-  onSubmitTemplateBased(){
-    console.log(this.titleHeader);
+  openModalAddForm(id: any) {
+    let modal = (document.getElementById(id) as HTMLFormElement);
+    modal.style.display = 'block';
   }
+  
+
+
+
 }
