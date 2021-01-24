@@ -40,14 +40,15 @@
             <textarea id="code" class="w3-input w3-border" style="resize:none" 
             [(ngModel)]="addCode" name="addCodeNote" required rows="8" cols="50"></textarea>
         </p> 
-        <!-- upload image-->
+        <!-- image-->
         <input
         style="display: none"
         type="file" (change)="onFileChanged($event)" #fileInput>
         <button class="w3-btn w3-blue" (click)="fileInput.click()">Select File</button>
-        <button class="w3-btn w3-blue" (click)="onUpload()">Upload File</button>
+        <button class="w3-btn w3-red" (click)="removeFile()">Remove File</button>
         <br>
-        <div >
+        <div>
+            <p>some note about picture</p>
             <img id="imagePreview" src="../.././assets/pug.jpg" alt="noteImg" style="width:100%; display:none;">
         </div>
         <p><button class="w3-btn w3-green" id="ok" (click)="closeForm(true)"><i class="fas fa-check"></i></button></p>
