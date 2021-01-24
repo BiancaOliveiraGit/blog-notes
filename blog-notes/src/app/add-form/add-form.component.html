@@ -20,26 +20,40 @@
 <!-- WIP - below-->
 <div class="w3-container">
     <form #addForm="ngForm">
-        <span class="w3-button w3-display-topright w3-red" (click)="closeForm(false)">X</span>
+        <p><button class="w3-btn w3-display-topright w3-red" id="ok" (click)="closeForm(false)"><i class="fas fa-times"></i></button></p>
         <p>
+            <label>Note Heading</label>
             <input type="text"  id="heading" [(ngModel)]="addHeading" name="addTitle" required>
         </p>
         <p>
+            <label>Note</label>
             <textarea id="note" class="w3-input w3-border" style="resize:none" 
             [(ngModel)]="addNote" name="addTextarea" required rows="5" cols="50"></textarea>
         </p>   
         <p>
+            <label>Add list with comma as delimiter ex: 'item1,item2'</label>
             <textarea id="list" class="w3-input w3-border" style="resize:none" 
             [(ngModel)]="addList" name="addListText" rows="3" cols="50"></textarea>
         </p>  
         <p>
+            <label>Code Example</label>
             <textarea id="code" class="w3-input w3-border" style="resize:none" 
             [(ngModel)]="addCode" name="addCodeNote" required rows="8" cols="50"></textarea>
         </p> 
+        <!-- upload image-->
+        <input
+        style="display: none"
+        type="file" (change)="onFileChanged($event)" #fileInput>
+        <button class="w3-btn w3-blue" (click)="fileInput.click()">Select File</button>
+        <button class="w3-btn w3-blue" (click)="onUpload()">Upload File</button>
+        <br>
+        <div >
+            <img id="imagePreview" src="../.././assets/pug.jpg" alt="noteImg" style="width:100%; display:none;">
+        </div>
         <p><button class="w3-btn w3-green" id="ok" (click)="closeForm(true)"><i class="fas fa-check"></i></button></p>
     
-        
-        <!-- TODO upload image-->
+    
+  
      
     </form>
 </div>
