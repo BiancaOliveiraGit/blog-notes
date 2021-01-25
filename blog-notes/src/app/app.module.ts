@@ -7,6 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AddPageComponent } from './add-page/add-page.component';
 import { FormsModule } from '@angular/forms';
 import { AddFormComponent } from './add-form/add-form.component';
+import { ConverterService } from './service/converter-service';
 // import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -14,7 +15,8 @@ import { AddFormComponent } from './add-form/add-form.component';
     AppComponent,
     FooterComponent,
     AddPageComponent,
-    AddFormComponent
+    AddFormComponent,
+    ConverterService
   ],
   imports: [
     BrowserModule,

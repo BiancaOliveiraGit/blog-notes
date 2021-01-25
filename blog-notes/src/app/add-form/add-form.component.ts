@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import * as fileSaver from 'file-saver';
+import HtmlConverter from '../service/converter-service';
 
 // TODO ---
 // output object
@@ -12,20 +13,27 @@ import * as fileSaver from 'file-saver';
   styleUrls: ['./add-form.component.scss']
 })
 export class AddFormComponent implements OnInit {
-
+  newFormHtml: string;
   addHeading: string;
   addNote: string;
   addList: string;
+  addListArray: any[];
   addCode: string;
   selectedFile: any;
   imageTag: any;
+  imageData: string;
+  imageAlt: string;
 
   constructor() { 
+    this.newFormHtml = "";
     this.addHeading = "Note Heading";
     this.addNote = "add your note here...";
     this.addList = "";
+    this.addListArray = [];
     this.addCode = "";
     this.selectedFile = null;
+    this.imageData = '';
+    this.imageAlt = '';
   }
 
   ngOnInit(): void {
@@ -33,9 +41,12 @@ export class AddFormComponent implements OnInit {
   }
 
   convertToHtml(){
-// TODO work out how to convert a, what format
-// so add it to dom
-//function to convert code
+    // get image data
+    if(this.selectedFile !== null) {
+      this.imageAlt = (this.selectedFile.name) as string;
+    }
+    // convert to html string
+    this.newFormHtml = HtmlConverter(this.addHeading, this.addNote, this.addListArray, this.addCode, this.imageData, this.imageAlt);
   }
 
   onFileChanged(event: any) {
@@ -73,6 +84,7 @@ https://roytuts.com/download-file-from-server-using-angular/
      return null;
 
      // convert to object
+     this.convertToHtml();
      return 'close';
   }
 }
