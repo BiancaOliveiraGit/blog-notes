@@ -43,6 +43,7 @@ export class AddFormComponent implements OnInit {
     this.imageTag = (document.getElementById("imagePreview") as HTMLImageElement);
   }
 
+  // call event for @Output
   addNewItem(value: string) {
     this.newItemEvent.emit(value);
   }
@@ -50,7 +51,8 @@ export class AddFormComponent implements OnInit {
   convertToHtml(){
     // get image data
     if(this.selectedFile !== null) {
-      this.imageAlt = (this.selectedFile.name) as string;
+      let name = ((this.selectedFile.name) as string);
+      this.imageAlt = name.substr(0, name.length - 3);
       var dataUri:string = '';
 
       const reader = new FileReader();

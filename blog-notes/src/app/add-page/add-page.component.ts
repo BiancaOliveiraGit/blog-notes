@@ -37,7 +37,7 @@ export class AddPageComponent implements OnInit {
   closeModalAddForm() {
     // need to fix this hardcode of id
     let modal = (document.getElementById('addmodal') as HTMLFormElement);
-    modal.style.display = 'block';
+    modal.style.display = 'none';
   }
 
   addNote(htmlNote: any) {
