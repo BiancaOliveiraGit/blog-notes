@@ -41,8 +41,10 @@ export class AddPageComponent implements OnInit {
   }
 
   addNote(htmlNote: any) {
-    if(htmlNote !== '' || htmlNote !== undefined) {
+    if(htmlNote.length > 0 || htmlNote !== undefined) {
       this.noteArray.push(htmlNote);
+      console.log(htmlNote);
+      //TODO add data back to page
     };
     this.closeModalAddForm();
   }

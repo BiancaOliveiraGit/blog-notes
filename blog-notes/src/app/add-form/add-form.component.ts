@@ -1,11 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import * as fileSaver from 'file-saver';
+//import * as fileSaver from 'file-saver';
 import HtmlConverter from '../service/converter-service';
 
 // TODO ---
-// output object
-// convert form data to object ?dom object??
-// convert image to base64
+// add tags
+// editable text to picture
 
 @Component({
   selector: 'app-add-form',
@@ -17,12 +16,13 @@ export class AddFormComponent implements OnInit {
   addHeading: string;
   addNote: string;
   addList: string;
-  addListArray: any[];
+  addListArray: string[];
   addCode: string;
   selectedFile: any;
   imageTag: any;
   imageData: string;
   imageAlt: string;
+  reader: FileReader;
 
   @Output() newItemEvent = new EventEmitter<string>();
 
@@ -37,10 +37,20 @@ export class AddFormComponent implements OnInit {
     this.selectedFile = null;
     this.imageData = '';
     this.imageAlt = '';
+    this.reader = new FileReader();
   }
 
   ngOnInit(): void {
-    this.imageTag = (document.getElementById("imagePreview") as HTMLImageElement);
+    this.imageTag = (document.getElementById("imagePreview") as HTMLImageElement);  
+    
+    const setImageBase64 = (value:string) => {
+      this.imageData = value;
+    }
+
+    this.reader.addEventListener("load", function () {
+      // convert image file to base64 string     
+      setImageBase64(this.result as string);
+    }, false);
   }
 
   // call event for @Output
@@ -52,17 +62,11 @@ export class AddFormComponent implements OnInit {
     // get image data
     if(this.selectedFile !== null) {
       let name = ((this.selectedFile.name) as string);
-      this.imageAlt = name.substr(0, name.length - 3);
-      var dataUri:string = '';
+      this.imageAlt = name.substr(0, name.length - 4);
+    };
 
-      const reader = new FileReader();
-      reader.addEventListener("load", function () {
-      // convert image file to base64 string
-       dataUri = reader.result as string;
-    }, false);
-  
-      reader.readAsDataURL(this.selectedFile);
-      this.imageData = dataUri;
+    if(this.addList.length > 0) {
+      this.addListArray = this.addList.split(',');
     }
   
     // convert to html string
@@ -74,6 +78,8 @@ export class AddFormComponent implements OnInit {
     let link = window.URL.createObjectURL(this.selectedFile);
     this.imageTag.src = link;
     this.imageTag.style.display = "block";
+    // convert to base64
+    this.reader.readAsDataURL(this.selectedFile);
   }
 
 /*
@@ -99,10 +105,9 @@ https://roytuts.com/download-file-from-server-using-angular/
   }
  
   closeForm(save:boolean) {
-    console.log(save);
     if(!save)
     this.addNewItem('');
-
+    
      // convert to object
      this.convertToHtml();
      this.addNewItem(this.newFormHtml);
