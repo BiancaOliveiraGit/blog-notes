@@ -23,7 +23,7 @@
         <div id="addmodal" class="w3-modal">
             <div class="w3-modal-content">
             <div class="w3-container" id="add-modal" > <!--(click)="hideAddModal(addmodal)"-->
-                <app-add-form></app-add-form> 
+                <app-add-form (outputItemEvent)="addNote($event)"></app-add-form> 
             </div>
             </div>
         </div>

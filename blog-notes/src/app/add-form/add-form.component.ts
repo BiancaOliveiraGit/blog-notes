@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import * as fileSaver from 'file-saver';
 import HtmlConverter from '../service/converter-service';
 
@@ -24,6 +24,9 @@ export class AddFormComponent implements OnInit {
   imageData: string;
   imageAlt: string;
 
+  @Output() newItemEvent = new EventEmitter<string>();
+
+
   constructor() { 
     this.newFormHtml = "";
     this.addHeading = "Note Heading";
@@ -40,11 +43,26 @@ export class AddFormComponent implements OnInit {
     this.imageTag = (document.getElementById("imagePreview") as HTMLImageElement);
   }
 
+  addNewItem(value: string) {
+    this.newItemEvent.emit(value);
+  }
+
   convertToHtml(){
     // get image data
     if(this.selectedFile !== null) {
       this.imageAlt = (this.selectedFile.name) as string;
+      var dataUri:string = '';
+
+      const reader = new FileReader();
+      reader.addEventListener("load", function () {
+      // convert image file to base64 string
+       dataUri = reader.result as string;
+    }, false);
+  
+      reader.readAsDataURL(this.selectedFile);
+      this.imageData = dataUri;
     }
+  
     // convert to html string
     this.newFormHtml = HtmlConverter(this.addHeading, this.addNote, this.addListArray, this.addCode, this.imageData, this.imageAlt);
   }
@@ -81,10 +99,10 @@ https://roytuts.com/download-file-from-server-using-angular/
   closeForm(save:boolean) {
     console.log(save);
     if(!save)
-     return null;
+    this.addNewItem('');
 
      // convert to object
      this.convertToHtml();
-     return 'close';
+     this.addNewItem(this.newFormHtml);
   }
 }

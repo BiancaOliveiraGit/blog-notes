@@ -10,12 +10,14 @@ export class AddPageComponent implements OnInit {
   titleHeader: string;
   title: string;
   nowDate: string;
+  noteArray: string[];
 
   constructor() { 
     this.titleHeader = 'Title Header';
     this.title = 'Title';
     let now = new Date();
     this.nowDate = now.toDateString();
+    this.noteArray = [];
   }
 
   ngOnInit(): void {
@@ -32,7 +34,18 @@ export class AddPageComponent implements OnInit {
     modal.style.display = 'block';
   }
   
+  closeModalAddForm() {
+    // need to fix this hardcode of id
+    let modal = (document.getElementById('addmodal') as HTMLFormElement);
+    modal.style.display = 'block';
+  }
 
+  addNote(htmlNote: any) {
+    if(htmlNote !== '' || htmlNote !== undefined) {
+      this.noteArray.push(htmlNote);
+    };
+    this.closeModalAddForm();
+  }
 
 
 }
