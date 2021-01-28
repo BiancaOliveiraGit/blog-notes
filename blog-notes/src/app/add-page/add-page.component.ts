@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
+//import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-add-page',
@@ -41,13 +41,23 @@ export class AddPageComponent implements OnInit {
   }
 
   addNote(htmlNote: any) {
-    if(htmlNote.length > 0 || htmlNote !== undefined) {
+    if(htmlNote.length > 0) {
       this.noteArray.push(htmlNote);
       console.log(htmlNote);
-      //TODO add data back to page
+      // add data back to page
+      let note = (document.getElementById('insert-notes') as HTMLElement);
+      note.insertAdjacentHTML('afterbegin', htmlNote);
+
     };
     this.closeModalAddForm();
   }
 
+  exportHtml() {
+    // TODO 
+    //  insert data into template
+
+    //create template with all styling and scripts on the one page, use file-saver to save to local
+    //create tags entry
+  }
 
 }

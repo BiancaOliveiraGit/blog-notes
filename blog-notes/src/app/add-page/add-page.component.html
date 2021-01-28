@@ -17,8 +17,10 @@
         </div>
         <!-- plus button-->
         <br>
+        <div id="btn-controls"> 
         <button class="w3-button w3-xxxlarge" (click)="openModalAddForm('addmodal')"><i class="far fa-plus-square"></i></button>
-
+        <button class="w3-button w3-xxxlarge" (click)="exportHtml()"><i class="far fa-save"></i></button>
+        </div>
         <!-- add modal -->
         <div id="addmodal" class="w3-modal">
             <div class="w3-modal-content">
@@ -26,6 +28,10 @@
                 <app-add-form (newItemEvent)="addNote($event)"></app-add-form> 
             </div>
             </div>
+        </div>
+        <br>
+        <div class="notes" id="insert-notes"> 
+  
         </div>
     </div>
 <!-- add -->

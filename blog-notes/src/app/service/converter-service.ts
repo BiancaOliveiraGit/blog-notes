@@ -39,7 +39,7 @@
            
             returnHtml += imageBegin + imageDataVal + imageAlt.replace('ImageAlt', imageAltVal);
         }
-        const templateEnd = '</div>';
+        const templateEnd = '</div><hr>';
         returnHtml += templateEnd;
 
         return returnHtml;
