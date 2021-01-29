@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-//import {NgForm} from '@angular/forms';
+import { HtmlTemplateConvert} from '../service/converter-service';
 
 @Component({
   selector: 'app-add-page',
@@ -11,6 +11,8 @@ export class AddPageComponent implements OnInit {
   title: string;
   nowDate: string;
   noteArray: string[];
+  tagArray: string[];
+
 
   constructor() { 
     this.titleHeader = 'Title Header';
@@ -18,6 +20,7 @@ export class AddPageComponent implements OnInit {
     let now = new Date();
     this.nowDate = now.toDateString();
     this.noteArray = [];
+    this.tagArray = [];
   }
 
   ngOnInit(): void {
@@ -43,7 +46,7 @@ export class AddPageComponent implements OnInit {
   addNote(htmlNote: any) {
     if(htmlNote.length > 0) {
       this.noteArray.push(htmlNote);
-      console.log(htmlNote);
+      //console.log(htmlNote);
       // add data back to page
       let note = (document.getElementById('insert-notes') as HTMLElement);
       note.insertAdjacentHTML('afterbegin', htmlNote);
@@ -52,12 +55,15 @@ export class AddPageComponent implements OnInit {
     this.closeModalAddForm();
   }
 
-  exportHtml() {
-    // TODO 
-    //  insert data into template
+  addTag(tag: any) {
+    if(tag.length > 0) {
+      this.tagArray = tag.split(',');
+    };
+  }
 
-    //create template with all styling and scripts on the one page, use file-saver to save to local
-    //create tags entry
+  exportHtml() {
+    // insert data into template & save locally
+    HtmlTemplateConvert(this.noteArray, this.titleHeader, this.tagArray, this.nowDate);
   }
 
 }

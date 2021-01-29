@@ -1,6 +1,7 @@
 
-   
-    const HtmlTemplateConvert = (title:string, note:string, list:string[], codes:string, imageDataVal:string, imageAltVal:string) => {
+    
+
+    const HtmlNoteConvert = (title:string, note:string, list:string[], codes:string, imageDataVal:string, imageAltVal:string) => {
         let returnHtml = '';
         // title
         const templateTitle = '<div class="w3-container"> <h3>TitleHeader</h3>';
@@ -44,4 +45,40 @@
 
         return returnHtml;
     }
-export default HtmlTemplateConvert;
+export default HtmlNoteConvert;
+
+
+import { saveAs } from 'file-saver';  
+export const HtmlTemplateConvert = async (notes:string[], titleFileName:string, tags:string[], nowDate:string) => {
+    
+    const templateFilePath = '../.././assets/final-page-template.html';
+    // Fetch the template
+    let response = await fetch(templateFilePath);
+    let template = await response.text(); // read response body as text
+
+    // replace data
+    const noteData = notes.join('');
+    let templateNotes = template.replace('#INSERT-NOTE-ARRAY', noteData);
+    // tags forLoop to create span 
+    if(tags.length > 0) {
+        let spanTags = '';
+        const span = '<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#INSERTTAG</span>'
+        tags.forEach(t => {
+            spanTags += span.replace('#INSERTTAG', '#' + t);
+        });
+        templateNotes = templateNotes.replace('#INSERT-TAGS', spanTags);
+    }else {
+        templateNotes = templateNotes.replace('#INSERT-TAGS', '');
+    }
+
+     // saves to documents folder
+    let file = new File([templateNotes], titleFileName + '_' + nowDate + '.html', {type: "text/plain;charset=utf-8"});
+    saveAs(file);
+ 
+
+   
+
+
+
+   
+}

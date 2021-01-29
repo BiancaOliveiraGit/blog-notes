@@ -25,7 +25,7 @@
         <div id="addmodal" class="w3-modal">
             <div class="w3-modal-content">
             <div class="w3-container" id="add-modal"> 
-                <app-add-form (newItemEvent)="addNote($event)"></app-add-form> 
+                <app-add-form (newItemEvent)="addNote($event)" (addTagEvent)="addTag($event)"></app-add-form> 
             </div>
             </div>
         </div>

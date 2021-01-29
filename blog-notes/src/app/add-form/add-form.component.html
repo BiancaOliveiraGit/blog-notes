@@ -1,23 +1,5 @@
 
-
-<div class="w3-container">
-    <!-- <h3 id="heading">To open an Angular Modal</h3>
-    <p>example from ModelMaintenance <strong style="color:blue;">'../maintenance-options-modal'</strong></p>
-   
-    <ul style="list-style-type: square;">learnings: 
-        <li>can set the size 'sm' 'lg'</li>
-        <li>to inject data into modal @input parameters <b>copyModal.componentInstance.selectedCategory = data;</b></li>
-      </ul>
-
-    <p>code example:</p>
-    <pre>
-        <code> -->
-            <!-- todo escape function -->
-          <!-- "openCopyModal(data) {{ fhhf 
-            ffd&gt;"
-        </code>
-      </pre>    -->
-<!-- WIP - below-->
+<!-- <div class="w3-container"> -->
 <div class="w3-container">
     <form #addForm="ngForm">
         <p><button class="w3-btn w3-display-topright w3-red" id="ok" (click)="closeForm(false)"><i class="fas fa-times"></i></button></p>
@@ -33,13 +15,19 @@
         <p>
             <label>Add list with comma as delimiter ex: 'item1,item2'</label>
             <textarea id="list" class="w3-input w3-border" style="resize:none" 
-            [(ngModel)]="addList" name="addListText" rows="3" cols="50"></textarea>
+            [(ngModel)]="addList" name="addListText" rows="3" cols="10"></textarea>
         </p>  
         <p>
             <label>Code Example</label>
             <textarea id="code" class="w3-input w3-border" style="resize:none" 
             [(ngModel)]="addCode" name="addCodeNote" required rows="8" cols="50"></textarea>
         </p> 
+        <p>
+            <label>Add Tags with a comma as delimiter ex: 'tag1,tag2'</label>
+            <textarea id="tags" class="w3-input w3-border" style="resize:none" 
+            [(ngModel)]="addTag" name="addTagList" rows="3" cols="5"></textarea>
+        </p>
+        <br>
         <!-- image-->
         <input
         style="display: none"
@@ -48,16 +36,13 @@
         <button class="w3-btn w3-red" (click)="removeFile()">Remove File</button>
         <br>
         <div>
-            <p>some note about picture</p>
+            <p>Image</p>
             <img id="imagePreview" src="../.././assets/pug.jpg" alt="noteImg" style="width:100%; display:none;">
         </div>
         <p><button class="w3-btn w3-green" id="ok" (click)="closeForm(true)"><i class="fas fa-check"></i></button></p>
-    
-    
-  
-     
+
     </form>
 </div>
 
     
-</div> 
+<!-- </div>  -->

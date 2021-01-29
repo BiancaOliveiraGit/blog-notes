@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-//import * as fileSaver from 'file-saver';
-import HtmlConverter from '../service/converter-service';
+import HtmlNoteConverter from '../service/converter-service';
 
 // TODO ---
 // add tags
@@ -17,6 +16,8 @@ export class AddFormComponent implements OnInit {
   addNote: string;
   addList: string;
   addListArray: string[];
+  addTag:string;
+  //addTagArray: string[];
   addCode: string;
   selectedFile: any;
   imageTag: any;
@@ -25,6 +26,7 @@ export class AddFormComponent implements OnInit {
   reader: FileReader;
 
   @Output() newItemEvent = new EventEmitter<string>();
+  @Output() addTagEvent = new EventEmitter<string>();
 
 
   constructor() { 
@@ -33,6 +35,8 @@ export class AddFormComponent implements OnInit {
     this.addNote = "add your note here...";
     this.addList = "";
     this.addListArray = [];
+    this.addTag = "";
+    //this.addTagArray = [];
     this.addCode = "";
     this.selectedFile = null;
     this.imageData = '';
@@ -58,21 +62,6 @@ export class AddFormComponent implements OnInit {
     this.newItemEvent.emit(value);
   }
 
-  convertToHtml(){
-    // get image data
-    if(this.selectedFile !== null) {
-      let name = ((this.selectedFile.name) as string);
-      this.imageAlt = name.substr(0, name.length - 4);
-    };
-
-    if(this.addList.length > 0) {
-      this.addListArray = this.addList.split(',');
-    }
-  
-    // convert to html string
-    this.newFormHtml = HtmlConverter(this.addHeading, this.addNote, this.addListArray, this.addCode, this.imageData, this.imageAlt);
-  }
-
   onFileChanged(event: any) {
     this.selectedFile = event.target.files[0];
     let link = window.URL.createObjectURL(this.selectedFile);
@@ -82,21 +71,8 @@ export class AddFormComponent implements OnInit {
     this.reader.readAsDataURL(this.selectedFile);
   }
 
-/*
-links I used to understand saving file
-https://roytuts.com/download-file-from-server-using-angular/
-
-*/
-
   fileInput(){
    /* this function is used for the file directory modal*/
-   
-    // get file convert to binary then save to local folder
-     /* this opens the image
-   var link = document.createElement('a');
-    link.href = window.URL.createObjectURL(this.selectedFile);;
-    link.click(); 
-    */
   }
 
   removeFile() {
@@ -104,12 +80,29 @@ https://roytuts.com/download-file-from-server-using-angular/
     this.selectedFile = null;
   }
  
+  convertToHtml(){
+    // get image data
+    let imageBase64:string = '';
+    if(this.selectedFile !== null) {
+      let name = ((this.selectedFile.name) as string);
+      this.imageAlt = name.substr(0, name.length - 4);
+      imageBase64 = this.imageData;
+    };
+
+    if(this.addList.length > 0) 
+      this.addListArray = this.addList.split(',');
+
+    // convert to html string
+    this.newFormHtml = HtmlNoteConverter(this.addHeading, this.addNote, this.addListArray, this.addCode, imageBase64, this.imageAlt);
+  }
+
   closeForm(save:boolean) {
     if(!save)
     this.addNewItem('');
     
      // convert to object
      this.convertToHtml();
+     this.addTagEvent.emit(this.addTag);
      this.addNewItem(this.newFormHtml);
   }
 }
