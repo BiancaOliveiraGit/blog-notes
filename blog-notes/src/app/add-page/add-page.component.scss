@@ -8,3 +8,25 @@ h5#title{
     display: inline;
     padding-left: 10px;
 }
+
+i#btn-icon{
+margin-left: 15px;
+margin-right: 15px;
+}
+
+button#radius{
+    border-radius: 5px;
+}
+
+input{
+    margin-left: 15px;
+}
+
+#date{
+    margin-left: 15px;
+}
+
+#btn-controls{
+    display: flex;
+    justify-content: space-around;
+}

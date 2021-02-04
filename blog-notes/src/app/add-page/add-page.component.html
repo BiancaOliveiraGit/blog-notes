@@ -1,14 +1,18 @@
 <div class="w3-card-4 w3-margin w3-white">
     <div class="w3-container">
-        <div>
+        <div class="w3-center">
             <form #titleForm="ngForm" >
              <p>
-             <button class="w3-button" (click)="allowEdit('title-header')"><i class="far fa-edit"></i></button>
+             <button class="w3-button w3-hover-orange"  id="radius" (click)="allowEdit('title-header')">
+                 <i class="far fa-edit" ></i>
+             </button>
              <input type="text"  id="title-header" disabled="true"
              [(ngModel)]="titleHeader" name="blogTitle" required>
             </p>
             <p>
-            <button class="w3-button" (click)="allowEdit('title')"><i class="far fa-edit"></i></button>
+            <button class="w3-button w3-hover-orange"  id="radius" (click)="allowEdit('title')">
+                <i class="far fa-edit"></i>
+            </button>
             <input type="text"  id="title" disabled="true"
                 [(ngModel)]="title" name="blogTitleSub" required>
                 <span id="date" class="w3-opacity">{{nowDate}}</span>
@@ -17,9 +21,11 @@
         </div>
         <!-- plus button-->
         <br>
-        <div id="btn-controls"> 
-        <button class="w3-button w3-xxxlarge" (click)="openModalAddForm('addmodal')"><i class="far fa-plus-square"></i></button>
-        <button class="w3-button w3-xxxlarge" (click)="exportHtml()"><i class="far fa-save"></i></button>
+        <div id="btn-controls" > 
+        <button class="w3-button w3-xxlarge w3-hover-green" id="radius" (click)="openModalAddForm('addmodal')">
+            <i class="far fa-plus-square" id="btn-icon"></i>Add</button>
+        <button class="w3-button w3-xxlarge w3-hover-green" id="radius" (click)="exportHtml()">
+            <i class="far fa-save" id="btn-icon"></i>Save</button>
         </div>
         <!-- add modal -->
         <div id="addmodal" class="w3-modal">
