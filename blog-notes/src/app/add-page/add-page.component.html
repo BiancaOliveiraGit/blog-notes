@@ -36,12 +36,21 @@
             </div>
         </div>
         <br>
-        <div class="notes" id="insert-notes"> 
-  
-        </div>
+        <div class="notes" id="insert-notes"> </div>
     </div>
 <!-- add -->
-
-</div>   
+</div>  
+<div class="w3-card-4 w3-margin w3-white">
+<div class="w3-container" id="import-container">
+    <div class="w3-center">
+    <input
+    style="display: none"
+    type="file" (change)="onFileChanged($event)" #fileInput>
+    <div id="btn-controls">
+    <button class="w3-btn w3-blue" (click)="fileInput.click()">Import Html File</button>
+    </div>
+    </div>
+</div>
+</div> 
 <br>
 

@@ -4,7 +4,7 @@
     const HtmlNoteConvert = (title:string, note:string, list:string[], codes:string, imageDataVal:string, imageAltVal:string) => {
         let returnHtml = '';
         // title
-        const templateTitle = '<div class="w3-container"> <h3>TitleHeader</h3>';
+        const templateTitle = '<div class="w3-container" id="add-note"> <h3>TitleHeader</h3>';
         const templateNote = '<p>Note</p>';
         const titleHeader = templateTitle.replace('TitleHeader', title);
         const noteDiv = templateNote.replace('Note', note);
@@ -70,7 +70,7 @@ export const HtmlTemplateConvert = async (notes:string[], titleFileName:string, 
     }else {
         templateNotes = templateNotes.replace('#INSERT-TAGS', '');
     }
-
+    templateNotes = templateNotes.replace('#PAGE-TITLE', titleFileName);
      // saves to documents folder
     let file = new File([templateNotes], titleFileName + '_' + nowDate + '.html', {type: "text/plain;charset=utf-8"});
     saveAs(file);
