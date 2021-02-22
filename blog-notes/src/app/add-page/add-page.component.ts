@@ -12,7 +12,7 @@ export class AddPageComponent implements OnInit {
   nowDate: string;
   noteArray: string[];
   tagArray: string[];
-
+  fileName: string;
 
   constructor() { 
     this.titleHeader = 'Title Header';
@@ -21,6 +21,7 @@ export class AddPageComponent implements OnInit {
     this.nowDate = now.toDateString();
     this.noteArray = [];
     this.tagArray = [];
+    this.fileName = '';
   }
 
   ngOnInit(): void {
@@ -55,18 +56,19 @@ export class AddPageComponent implements OnInit {
 
   addTag(tag: any) {
     if(tag.length > 0) {
-      this.tagArray = tag.split(',');
+      this.tagArray.push(...tag.split(','));
     };
   }
 
   exportHtml() {
     // insert data into template & save locally
-    HtmlTemplateConvert(this.noteArray, this.titleHeader, this.tagArray, this.nowDate);
+    HtmlTemplateConvert(this.noteArray, this.titleHeader, this.tagArray, this.nowDate, this.fileName);
   }
 
   // Import 
   onFileChanged(event: any) {
     let selectedFile = event.target.files[0];
+    this.fileName = selectedFile.name;
     let link = window.URL.createObjectURL(selectedFile);
     this.readImportFile(link);
   }
@@ -96,8 +98,15 @@ export class AddPageComponent implements OnInit {
     let title = (doc.getElementById('page-title') as HTMLElement);
     let titleOnDom = (document.getElementById('title-header') as HTMLElement); 
     this.titleHeader = title.innerText;
-    // get tags and add to dom
-    
+    // get list of tags
+    let existTags = doc.querySelectorAll('#tagId');
+    console.log(existTags);
+    existTags.forEach(query => {
+      console.log('tags', query.innerHTML);
+      this.addTag(query.innerHTML)
+    });
+
+  
   }
 
  

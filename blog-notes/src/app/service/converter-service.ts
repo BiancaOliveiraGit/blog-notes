@@ -34,7 +34,7 @@
         }
   
         //image
-        if(imageAltVal !== '') {
+        if(imageDataVal !== '') {
             const imageBegin = '<img src="';
             let imageAlt = '" alt="ImageAlt" style=" width:100%;">';
            
@@ -49,7 +49,7 @@ export default HtmlNoteConvert;
 
 
 import { saveAs } from 'file-saver';  
-export const HtmlTemplateConvert = async (notes:string[], titleFileName:string, tags:string[], nowDate:string) => {
+export const HtmlTemplateConvert = async (notes:string[], titleFileName:string, tags:string[], nowDate:string, filename:string = '') => {
     
     const templateFilePath = '../.././assets/final-page-template.html';
     // Fetch the template
@@ -62,17 +62,20 @@ export const HtmlTemplateConvert = async (notes:string[], titleFileName:string, 
     // tags forLoop to create span 
     if(tags.length > 0) {
         let spanTags = '';
-        const span = '<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#INSERTTAG</span>'
+        const span = '<span class="w3-tag w3-light-grey w3-small w3-margin-bottom" id="tagId">#INSERTTAG</span>'
         tags.forEach(t => {
-            spanTags += span.replace('#INSERTTAG', '#' + t);
+            let pound = t[0].charAt(0) ===  '#' ? '' : '#';
+            spanTags += span.replace('#INSERTTAG', pound + t);
         });
         templateNotes = templateNotes.replace('#INSERT-TAGS', spanTags);
     }else {
         templateNotes = templateNotes.replace('#INSERT-TAGS', '');
     }
     templateNotes = templateNotes.replace('#PAGE-TITLE', titleFileName);
+    let dateNoSpace = nowDate.replace(/\s+/g, '');
+    let fileNamePath = filename !== '' ? filename : titleFileName + '_' + dateNoSpace + '.html';
      // saves to documents folder
-    let file = new File([templateNotes], titleFileName + '_' + nowDate + '.html', {type: "text/plain;charset=utf-8"});
+    let file = new File([templateNotes], fileNamePath, {type: "text/plain;charset=utf-8"});
     saveAs(file);
  
 

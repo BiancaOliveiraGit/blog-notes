@@ -12,4 +12,8 @@ export class NavigatorComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  refreshPage() {
+   // location.reload();
+   //todo 
+  }
 }
