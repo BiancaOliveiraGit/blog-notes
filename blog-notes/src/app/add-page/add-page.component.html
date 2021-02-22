@@ -10,11 +10,11 @@
              [(ngModel)]="titleHeader" name="blogTitle" required>
             </p>
             <p>
-            <button class="w3-button w3-hover-orange"  id="radius" (click)="allowEdit('title')">
+            <!-- <button class="w3-button w3-hover-orange"  id="radius" (click)="allowEdit('title')">
                 <i class="far fa-edit"></i>
             </button>
             <input type="text"  id="title" disabled="true"
-                [(ngModel)]="title" name="blogTitleSub" required>
+                [(ngModel)]="title" name="blogTitleSub" required>  -->
                 <span id="date" class="w3-opacity">{{nowDate}}</span>
             </p>
             </form>
@@ -36,12 +36,21 @@
             </div>
         </div>
         <br>
-        <div class="notes" id="insert-notes"> 
-  
-        </div>
+        <div class="notes" id="insert-notes"> </div>
     </div>
 <!-- add -->
-
-</div>   
+</div>  
+<div class="w3-card-4 w3-margin w3-white">
+<div class="w3-container" id="import-container">
+    <div class="w3-center">
+    <input
+    style="display: none"
+    type="file" (change)="onFileChanged($event)" #fileInput>
+    <div id="btn-import">
+    <button class="w3-btn w3-block w3-blue" (click)="fileInput.click()">Import Html File</button>
+    </div>
+    </div>
+</div>
+</div> 
 <br>
 

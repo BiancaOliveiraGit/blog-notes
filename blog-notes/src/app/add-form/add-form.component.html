@@ -1,5 +1,4 @@
 
-<!-- <div class="w3-container"> -->
 <div class="w3-container">
     <form #addForm="ngForm">
         <p><button class="w3-btn w3-display-topright w3-red" id="ok" (click)="closeForm(false)"><i class="fas fa-times"></i></button></p>
@@ -32,17 +31,15 @@
         <input
         style="display: none"
         type="file" (change)="onFileChanged($event)" #fileInput>
-        <button class="w3-btn w3-blue" (click)="fileInput.click()">Select File</button>
-        <button class="w3-btn w3-red" (click)="removeFile()">Remove File</button>
+        <div id="btn-controls">
+        <button class="w3-btn w3-blue" (click)="fileInput.click()">Import Image</button>
+        <button class="w3-btn w3-red" (click)="removeFile()">Remove Image</button>
+        </div>
         <br>
         <div>
-            <p>Image</p>
             <img id="imagePreview" src="../.././assets/pug.jpg" alt="noteImg" style="width:100%; display:none;">
         </div>
         <p><button class="w3-btn w3-green" id="ok" (click)="closeForm(true)"><i class="fas fa-check"></i></button></p>
 
     </form>
 </div>
-
-    
-<!-- </div>  -->

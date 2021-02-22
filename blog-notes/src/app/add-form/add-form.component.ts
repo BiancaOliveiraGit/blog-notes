@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import HtmlNoteConverter from '../service/converter-service';
 
 // TODO ---
-// add tags
 // editable text to picture
 
 @Component({
@@ -17,7 +16,6 @@ export class AddFormComponent implements OnInit {
   addList: string;
   addListArray: string[];
   addTag:string;
-  //addTagArray: string[];
   addCode: string;
   selectedFile: any;
   imageTag: any;
@@ -36,7 +34,6 @@ export class AddFormComponent implements OnInit {
     this.addList = "";
     this.addListArray = [];
     this.addTag = "";
-    //this.addTagArray = [];
     this.addCode = "";
     this.selectedFile = null;
     this.imageData = '';
